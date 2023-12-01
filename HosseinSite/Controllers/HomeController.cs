@@ -1,32 +1,27 @@
-﻿using HosseinSite.Models;
+﻿using Resume.Infrustructure.Models.ResumeDbContext;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+using Resume.Application.DTOs.SiteSide.Home_Index;
+using Resume.Domain.RepositoryInterface;
+using Resume.Application.Services.Interface;
 
 namespace HosseinSite.Controllers
 {
-    public class HomeController : Controller
+	public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        #region Ctor
+        public HomeController(IDashboardService dashboardService)
         {
-            _logger = logger;
-        }
+			DashboardService = dashboardService;
+		}
 
-        public IActionResult Index()
+		public IDashboardService DashboardService { get; }
+		#endregion
+		public async Task<IActionResult> Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var model = await DashboardService.FillDashboardModel();
+			return View(model);
+             
         }
     }
 }
