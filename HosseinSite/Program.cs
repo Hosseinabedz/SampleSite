@@ -1,3 +1,9 @@
+using Resume.Application.Services.Implement;
+using Resume.Application.Services.Interface;
+using Resume.Domain.RepositoryInterface;
+using Resume.Infrustructure.Models.ResumeDbContext;
+using Resume.Infrustructure.Repository;
+
 namespace HosseinSite
 {
     public class Program
@@ -8,8 +14,23 @@ namespace HosseinSite
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ResumeDbContext>();
+			#region Repositories
+			builder.Services.AddScoped<IEducationRepository, EducationRepository>();
+			builder.Services.AddScoped<IExperienceRepository, ExperienceRepository>();
+			builder.Services.AddScoped<IMySkillsRepository, MySkillsRepository>();
+			builder.Services.AddScoped<IContactUsRepository, ContactUsRepository>();
+            #endregion
+            #region Services
+            builder.Services.AddScoped<IContactUsService, ContactUsService>();
+            builder.Services.AddScoped<IDashboardService, DashboradService>();
+            builder.Services.AddScoped<IEducationService, EducationService>();
+			builder.Services.AddScoped<IExperienceService, ExperienceService>();
+			builder.Services.AddScoped<IMySkillsService, MySkillsService>();
+			#endregion
 
-            var app = builder.Build();
+
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -26,7 +47,11 @@ namespace HosseinSite
 
             app.UseAuthorization();
 
-            app.MapControllerRoute(
+			app.MapControllerRoute(
+				name: "area",
+				pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+			app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 

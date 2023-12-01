@@ -1,4 +1,4 @@
-﻿namespace HosseinSite.Models.Entities.MySkills;
+﻿namespace Resume.Domain.Models.Entities.MySkills;
 
 public class MySkills
 {

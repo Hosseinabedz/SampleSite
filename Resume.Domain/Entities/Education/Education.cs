@@ -1,4 +1,4 @@
-﻿namespace HosseinSite.Models.Entities.Education;
+﻿namespace Resume.Domain.Models.Entities.Education;
 
 public class Education
 {

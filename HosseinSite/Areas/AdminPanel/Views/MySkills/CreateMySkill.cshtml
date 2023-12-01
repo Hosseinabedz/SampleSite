@@ -1,0 +1,50 @@
+﻿@model Resume.Domain.Models.Entities.MySkills.MySkills
+
+
+<div class="content-wrapper" style="min-height: 265.6px;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">افزودن مهارت</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/AdminPanel">داشبورد ادمین</a></li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">ارسال اطلاعات مهارت ها</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form asp-action="CreateMySkill" asp-area="AdminPanel" method="post">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">عنوان مهارت</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" asp-for="SkillTitle" placeholder="عنوان مهارت را وارد کنید">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">میزان توانایی</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" asp-for="Percentage" placeholder="میزان توانایی را وارد کنید">
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">ارسال</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.card -->
+
+
+    </div>
